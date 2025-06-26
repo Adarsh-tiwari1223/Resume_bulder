@@ -50,13 +50,18 @@ app.config.update(
 )
 
 # File Upload Configuration
-UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'uploads')
+UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER', os.path.join(app.root_path, 'static', 'uploads'))
 ALLOWED_EXTENSIONS = {'pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png'}
 
 # Ensure upload directory exists
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-    app.logger.info(f'Created upload directory: {UPLOAD_FOLDER}')
+try:
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+    app.logger.info(f'Upload directory configured: {UPLOAD_FOLDER}')
+except Exception as e:
+    app.logger.warning(f'Could not create upload directory: {e}')
+    # Fallback to temporary directory if needed
+    UPLOAD_FOLDER = os.path.join('/tmp', 'uploads')
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
