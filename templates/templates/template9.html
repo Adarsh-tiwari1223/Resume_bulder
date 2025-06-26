@@ -23,8 +23,8 @@
   <div class="section">
     <h2>Skills</h2>
     <ul>
-      {% for skill in data.skills.split(',') %}
-        <li>{{ skill.strip() }}</li>
+      {% for skill in data.skills_list %}
+        <li>{{ skill }}</li>
       {% endfor %}
     </ul>
   </div>
@@ -43,4 +43,4 @@
     <p>{{ data.projects }}</p>
   </div>
 </body>
-</html> 
+</html>

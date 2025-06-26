@@ -5,9 +5,98 @@
   <meta charset="UTF-8">
   <title>{{ data.name }} - Resume</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; }
-    h1, h2 { margin-bottom: 0; }
-    .section { margin-top: 20px; }
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --text-color: #1f2937;
+      --border-color: #e5e7eb;
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 40px;
+      color: var(--text-color);
+      line-height: 1.6;
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: #ffffff;
+    }
+    h1 {
+      color: var(--primary-color);
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+    h2 {
+      color: var(--secondary-color);
+      font-size: 1.5em;
+      margin: 25px 0 15px 0;
+      display: flex;
+      align-items: center;
+    }
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 3px;
+      background-color: var(--primary-color);
+      margin-right: 10px;
+    }
+    .section {
+      margin: 25px 0;
+      padding: 15px;
+      border-radius: 8px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+    }
+    .skills-list li {
+      background-color: #f3f4f6;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      color: var(--primary-color);
+    }
+    .experience-item {
+      margin-bottom: 20px;
+    }
+    .job-title {
+      color: var(--primary-color);
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 5px;
+    }
+    .education-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: start;
+    }
+    .date-range {
+      color: #6b7280;
+      font-size: 0.9em;
+    }
+    p {
+      margin: 10px 0;
+      text-align: justify;
+    }
+    @media print {
+      body {
+        padding: 20px;
+        box-shadow: none;
+      }
+      .section {
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+    }
   </style>
 </head>
 <body>
@@ -18,9 +107,9 @@
   </div>
   <div class="section">
     <h2>Skills</h2>
-    <ul>
-      {% for skill in data.skills.split(',') %}
-        <li>{{ skill.strip() }}</li>
+    <ul class="skills-list">
+      {% for skill in data.skills_list %}
+        <li>{{ skill }}</li>
       {% endfor %}
     </ul>
   </div>
@@ -34,13 +123,22 @@
   </div>
   <div class="section">
     <h2>Experience</h2>
-    <p><strong>{{ data.job_role }}</strong></p>
-    <p>{{ data.job_summary }}</p>
+    <div class="experience-item">
+      <div class="job-title">{{ data.job_role }}</div>
+      <p>{{ data.job_summary }}</p>
+    </div>
   </div>
   <div class="section">
     <h2>Education</h2>
-    <p><strong>{{ data.course_name }}</strong> - {{ data.institution_name }}</p>
-    <p>{{ data.edu_from }} to {{ data.edu_to }}</p>
+    {% for edu in data.education %}
+    <div class="education-item">
+      <div>
+        <strong>{{ edu.course_name }}</strong>
+        <div>{{ edu.institution_name }}</div>
+      </div>
+      <div class="date-range">{{ edu.edu_from }} - {{ edu.edu_to }}</div>
+    </div>
+    {% endfor %}
   </div>
 </body>
 </html>
