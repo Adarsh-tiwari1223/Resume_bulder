@@ -1,0 +1,24 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.ai-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #eef;
+    border-radius: 8px;
+}
+textarea, input[type=text], input[type=email], select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+}

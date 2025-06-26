@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Template</title>
+</head>
+<body>
+    <h2>Select a Resume Template</h2>
+    <form method="POST">
+      {% for i in range(1, 21) %}
+        <input type="radio" name="template" value="template{{ i }}" required> Template {{ i }}<br>
+      {% endfor %}
+      <br>
+      <button type="submit">Preview Resume</button>
+    </form>
+</body>
+</html>

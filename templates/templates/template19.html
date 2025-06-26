@@ -1,0 +1,46 @@
+<!-- template19.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{{ data.name }} - Resume</title>
+  <style>
+    body { font-family: 'Times New Roman', Times, serif; margin: 40px; }
+    h1 { color: #263238; }
+    .section { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>{{ data.name }}</h1>
+  <div class="section">
+    <h2>Certifications</h2>
+    <p>{{ data.certifications }}</p>
+  </div>
+  <div class="section">
+    <h2>Profile Summary</h2>
+    <p>{{ data.summary }}</p>
+  </div>
+  <div class="section">
+    <h2>Skills</h2>
+    <ul>
+      {% for skill in data.skills.split(',') %}
+        <li>{{ skill.strip() }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="section">
+    <h2>Experience</h2>
+    <p><strong>{{ data.job_role }}</strong></p>
+    <p>{{ data.job_summary }}</p>
+  </div>
+  <div class="section">
+    <h2>Projects</h2>
+    <p>{{ data.projects }}</p>
+  </div>
+  <div class="section">
+    <h2>Education</h2>
+    <p><strong>{{ data.course_name }}</strong> - {{ data.institution_name }}</p>
+    <p>{{ data.edu_from }} to {{ data.edu_to }}</p>
+  </div>
+</body>
+</html> 
