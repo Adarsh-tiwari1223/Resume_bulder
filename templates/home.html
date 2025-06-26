@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resume Builder - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9fafc;
+            color: #111827;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .left {
+            flex: 1 1 500px;
+            max-width: 600px;
+        }
+        .right {
+            flex: 1 1 400px;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+        p.description {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            color: #4b5563;
+        }
+        .btn-primary, .btn-secondary {
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            margin-right: 15px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+        .btn-secondary {
+            background-color: white;
+            color: #2563eb;
+            border: 2px solid #2563eb;
+        }
+        .btn-secondary:hover {
+            background-color: #2563eb;
+            color: white;
+        }
+        .image-preview {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px 40px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        header a {
+            margin-left: 20px;
+            color: #2563eb;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        header a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#">Contact Us</a>
+        <a href="#">Login</a>
+    </header>
+    <div class="container">
+        <div class="left">
+            <h1>Job-Winning Resume Templates</h1>
+            <p class="description">
+                Get the job 2x as fast. Use recruiter-approved templates and step-by-step content recommendations to create a new resume or optimize your current one.
+            </p>
+            <a href="{{ url_for('form') }}" class="btn-primary">Create new resume</a>
+            <a href="{{ url_for('upload_resume') }}" class="btn-secondary">Optimize my resume</a>
+        </div>
+        <div class="right">
+            <img src="{{ url_for('static', filename='images/homepage_preview.png') }}" alt="Resume Preview" class="image-preview" />
+        </div>
+    </div>
+</body>
+</html>
